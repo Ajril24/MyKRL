@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jadwal KRL</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f2f2f2; }
+    .container { background: white; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    label { display: block; margin-top: 15px; }
+    select, input[type="time"], button { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; }
+    table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+    th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; }
+    th { background-color: #007bff; color: white; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Jadwal KRL</h2>
+    <label for="origin">Stasiun Asal:</label>
+    <select id="origin">
+      <option>Tanah Abang</option>
+      <option>Sudirman</option>
+      <option>Depok</option>
+      <option>Bogor</option>
+    </select>
+
+    <label for="destination">Stasiun Tujuan:</label>
+    <select id="destination">
+      <option>Jakarta Kota</option>
+      <option>Citayam</option>
+      <option>Tanah Abang</option>
+    </select>
+
+    <label for="time">Waktu Keberangkatan:</label>
+    <input type="time" id="time" />
+
+    <button onclick="cariJadwal()">Cari Jadwal</button>
+
+    <table id="resultTable" style="display:none;">
+      <thead>
+        <tr>
+          <th>Waktu</th>
+          <th>Asal</th>
+          <th>Tujuan</th>
+          <th>Line</th>
+        </tr>
+      </thead>
+      <tbody id="resultBody"></tbody>
+    </table>
+  </div>
+
+  <script>
+    function cariJadwal() {
+      const origin = document.getElementById('origin').value;
+      const destination = document.getElementById('destination').value;
+      const time = document.getElementById('time').value;
+
+      const hasil = `
+        <tr>
+          <td>${time}</td>
+          <td>${origin}</td>
+          <td>${destination}</td>
+          <td>Red Line</td>
+        </tr>`;
+
+      document.getElementById('resultBody').innerHTML = hasil;
+      document.getElementById('resultTable').style.display = 'table';
+    }
+  </script>
+</body>
+</html>
